@@ -1,4 +1,5 @@
 require "graph_models/dependency"
+require "active_support/inflector"
 
 class DependencyGraph
   def initialize(models_directory:)
@@ -15,12 +16,17 @@ class DependencyGraph
 
         if line.start_with?("has_many")
           depends_on = line.delete_prefix("has_many :").split(",")[0].delete_suffix("\n")
-          dependencies << Dependency.new(from: classname, to: depends_on)
+          dependencies << Dependency.new(from: classname, to: depends_on.singularize, has_many: true)
+        end
+
+        if line.start_with?("has_one")
+          depends_on = line.delete_prefix("has_one :").split(",")[0].delete_suffix("\n")
+          dependencies << Dependency.new(from: classname, to: depends_on.singularize, has_many: true)
         end
 
         if line.start_with?("belongs_to")
           depends_on = line.delete_prefix("belongs_to :").split(",")[0].delete_suffix("\n")
-          dependencies << Dependency.new(from: classname, to: depends_on)
+          dependencies << Dependency.new(from: classname, to: depends_on.singularize, has_many: false)
         end
       end
     end

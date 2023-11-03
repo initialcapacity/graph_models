@@ -11,4 +11,5 @@ Gem::Specification.new do |s|
     "lib/graph_models/dependency.rb",
     "lib/graph_models/graphviz.rb",
   ]
+  s.add_runtime_dependency "activesupport"
 end
