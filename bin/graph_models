@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'graph_models'
+
+arguments = ARGV
+
+if arguments.length != 1
+  puts "usage: graph_models <models_directory>"
+  return
+end
+
+models_directory = ARGV[0]
+
+print_dependencies models_directory: models_directory
