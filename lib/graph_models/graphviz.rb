@@ -2,11 +2,8 @@ def to_graphviz(dependencies:)
   "digraph D {\n".tap do |result|
     result << "    graph [ranksep=\"7\"];\n"
     dependencies.each do |dep|
-      if dep.has_many
-        result << "    \"#{dep.from}\" -> \"#{dep.to}\" [color=\"red\"];\n"
-      else
-        result << "    \"#{dep.from}\" -> \"#{dep.to}\";\n"
-      end
+      suffix = dep.has_many ? " [color=\"red\"]" : ""
+      result << "    \"#{dep.from}\" -> \"#{dep.to}\"#{suffix};\n"
     end
   end + "}\n"
 end

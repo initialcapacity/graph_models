@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.files = [
     "lib/graph_models.rb",
     "lib/graph_models/dependency_graph.rb",
+    "lib/graph_models/dependencies.rb",
     "lib/graph_models/dependency.rb",
     "lib/graph_models/graphviz.rb",
   ]
