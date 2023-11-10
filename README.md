@@ -6,6 +6,7 @@ Visualize Rails model dependencies.
 
 ```shell
 brew install graphviz
+bundle install
 ```
 
 ## Run
@@ -13,7 +14,7 @@ brew install graphviz
 ```shell
 gem build graph_models.gemspec
 gem install ./graph_models-0.0.0.gem
-bin/graph_models <models_directory> | dot -Tpng -ograph.svg
+bin/graph_models <models_directory> | dot -Tsvg -ograph.svg
 open graph.svg
 ```
 
@@ -21,6 +22,6 @@ open graph.svg
 ## Local development
 
 ```shell
-ruby -Ilib bin/graph_models <models_directory> | dot -Tpng -ograph.svg
+ruby -Ilib bin/graph_models <models_directory> | dot -Tsvg -ograph.svg
 open graph.svg
 ```
